@@ -1,14 +1,71 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Issue Demo
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <div class="line-card success">
+    <div class="line-card-header">
+      <ion-toolbar (click)="managersOpen = !managersOpen">
+        <ion-title>Managers ({{ managers.length }})</ion-title>
+        <ion-buttons slot="end">
+          <ion-button>
+            <ion-icon
+              slot="icon-only"
+              [name]="managersOpen ? 'arrow-dropdown' : 'arrow-dropleft'"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </div>
+    <div class="line-card-content" *ngIf="managersOpen" [@enterAnimation]>
+      <ion-list>
+        <ion-item-sliding *ngFor="let employee of managers">
+          <ion-item>{{ employee.name }}</ion-item>
+          <ion-item-options>
+            <ion-item-option color="primary">
+              <ion-button>
+                Call
+                <ion-icon slot="bottom" name="call"></ion-icon>
+              </ion-button>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </div>
+  </div>
+
+  <div class="line-card success">
+    <div class="line-card-header">
+      <ion-toolbar (click)="employeesOpen = !employeesOpen">
+        <ion-title>All Employees ({{ employees.length }})</ion-title>
+        <ion-buttons slot="end">
+          <ion-button>
+            <ion-icon
+              slot="icon-only"
+              [name]="employeesOpen ? 'arrow-dropdown' : 'arrow-dropleft'"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </div>
+    <div class="line-card-content" *ngIf="employeesOpen" [@enterAnimation]>
+      <ion-list>
+        <ion-item-sliding *ngFor="let employee of employees">
+          <ion-item>{{ employee.name }}</ion-item>
+          <ion-item-options>
+            <ion-item-option color="primary">
+              <ion-button>
+                Call
+                <ion-icon slot="bottom" name="call"></ion-icon>
+              </ion-button>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </div>
   </div>
 </ion-content>
